@@ -1,0 +1,14 @@
+{
+  "name": "hermanbot",
+  "version": "1.0.0",
+  "description": "ja",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "cobvig#3825",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.2.1"
+  }
+}
