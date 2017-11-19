@@ -7,13 +7,31 @@ var fortunes = [
     "Ja",
     "Nej",
     "~~",
-    "(╯°□°）╯︵ ┻━┻",
+    "(╯°□°）╯︵ ┻━┻"
+];
+
+var greetings = [
+    "Hej",
+    "Hallå",
+    "Välkommen",
+    "Yo",
+    "Ey",
+    "Hejsan",
+    "Tjena",
+    "Tja ba",
+    "Tjenixen"
 ];
 
 var bot = new Discord.Client();
 
 bot.on("ready", function() {
     console.log("ready");
+});
+
+bot.on("guildMemberAdd", function(member) {
+    member.guild.channels.find("name", "general").sendMessage(greetings[Math.floor(Math.random() * greetings.length)] + ", " + member.displayName);
+
+    member.addRole(member.guild.roles.find("name", "gubb"));
 });
 
 bot.on("message", function(message){
@@ -36,6 +54,21 @@ bot.on("message", function(message){
             } else {
                 message.channel.sendMessage("Kan ej läsa det :(")
             }
+            break;
+        case "embed":
+            var embed = new Discord.RichEmbed()
+                .addField("Titel", "Beskrivning", true)
+                .addField("Titel 2", "Beskrivning 2", true)
+                .addField("Titel 3", "Beskrivning 3")
+                .addField("Titel 4", "Beskrivning 4", true)
+                .addField("Titel 5", "Beskrivning 5")
+                .setColor(0xfe6e78)
+                .setFooter("En sko")
+                .setThumbnail(message.author.avatarURL)
+            message.channel.sendEmbed(embed);
+            break;
+        case "mention":
+            message.channel.sendMessage(message.author.toString() + " hej");
             break;
         default:
             message.channel.sendMessage("Bad Command :(");
