@@ -29,9 +29,9 @@ bot.on("ready", function() {
 });
 
 bot.on("guildMemberAdd", function(member) {
-    member.guild.channels.find("name", "general").sendMessage(greetings[Math.floor(Math.random() * greetings.length)] + ", " + member.displayName);
+    member.guild.channels.find("name", "general").sendMessage(member.displayName + "gick med i servern");
 
-    member.addRole(member.guild.roles.find("name", "gubb"));
+    member.addRole(member.guild.roles.find("name", "normies"));
 });
 
 bot.on("message", function(message){
