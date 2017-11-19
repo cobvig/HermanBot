@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 
 const TOKEN = process.env.BOT_TOKEN;
+const PREFIX = "//";    
 
 var bot = new Discord.Client();
 
@@ -11,11 +12,14 @@ bot.on("ready", function() {
 bot.on("message", function(message){
     if (message.author.equals(bot.user)) return;
 
-    if (message.content == "ja") {
-        message.channel.sendMessage("nej");
-    }
-    if (message.content == "nej") {
-        message.channel.sendMessage("ja");
+    if (!message.content.startsWith(PREFIX)) return;
+
+    var args = message.content.substring(PREFIX.length).split(" ");
+
+    switch (args[0]) {
+        case "ping":
+            message.channel.sendMessage("pong ");
+            break;
     }
 });
 
