@@ -1,7 +1,14 @@
 const Discord = require("discord.js");
 
 const TOKEN = process.env.BOT_TOKEN;
-const PREFIX = "//";    
+const PREFIX = "//";
+
+var fortunes = [
+    "Ja",
+    "Nej",
+    "~~",
+    "(╯°□°）╯︵ ┻━┻",
+];
 
 var bot = new Discord.Client();
 
@@ -16,10 +23,22 @@ bot.on("message", function(message){
 
     var args = message.content.substring(PREFIX.length).split(" ");
 
-    switch (args[0]) {
+    switch (args[0].toLowerCase()) {
         case "ping":
-            message.channel.sendMessage("pong ");
+            message.channel.sendMessage("Pong!");
             break;
+        case "info":
+            message.channel.sendMessage("*HermanBot* ***B1***  made by **cobvig#3825**");
+            break;
+        case "8ball":
+            if (args[1]) {
+                message.channel.sendMessage(fortunes[Math.floor(Math.random() * fortunes.length)]);
+            } else {
+                message.channel.sendMessage("Kan ej läsa det :(")
+            }
+            break;
+        default:
+            message.channel.sendMessage("Bad Command :(");
     }
 });
 
