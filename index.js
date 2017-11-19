@@ -29,7 +29,7 @@ bot.on("ready", function() {
 });
 
 bot.on("guildMemberAdd", function(member) {
-    member.guild.channels.find("name", "entrehallen").sendMessage(member.displayName + "gick med i servern");
+    member.guild.channels.find("name", "entrehallen").sendMessage(member.displayName + " gick med i servern");
 
     member.addRole(member.guild.roles.find("name", "normies"));
 });
