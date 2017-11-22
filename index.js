@@ -30,7 +30,7 @@ bot.on("ready", function() {
 });
 
 bot.on("guildMemberAdd", function(member) {
-    member.guild.channels.find("name", "general").sendMessage(member.displayName + " joinade, läs #381868780760072195 pl0x");
+    member.guild.channels.find("id", process.env.CHANNEL_ID).sendMessage(member.displayName + " joinade, läs #381868780760072195 pl0x");
 
     member.addRole(member.guild.roles.find("name", "normies"));
 });
