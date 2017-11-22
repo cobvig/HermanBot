@@ -31,7 +31,7 @@ bot.on("ready", function() {
 
 bot.on("guildMemberAdd", function(member) {
     var read_more_channel = bot.channels.get(process.env.READ_MORE_ID);
-    member.guild.channels.find("id", process.env.GENERAL_ID).sendMessage(member.displayName + " joinade, läs " + read_more_channel + " pl0x");
+    member.guild.channels.get(process.env.GENERAL_ID).sendMessage(member.displayName + " joinade, läs " + read_more_channel + " pl0x");
 
     member.addRole(member.guild.roles.find("name", "normies"));
 });
