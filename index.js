@@ -26,7 +26,7 @@ var bot = new Discord.Client();
 
 bot.on("ready", function() {
     console.log("ready");
-    bot.user.setGame("Minecraft")
+    bot.user.setGame("Bot Dreams")
 });
 
 bot.on("guildMemberAdd", function(member) {
