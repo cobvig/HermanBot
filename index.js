@@ -26,10 +26,11 @@ var bot = new Discord.Client();
 
 bot.on("ready", function() {
     console.log("ready");
+    bot.user.setGame("Minecraft")
 });
 
 bot.on("guildMemberAdd", function(member) {
-    member.guild.channels.find("name", "entrehallen").sendMessage(member.displayName + " joinade, läs #regler-och-info pl0x");
+    member.guild.channels.find("name", "general").sendMessage(member.displayName + " joinade, läs #381868780760072195 pl0x");
 
     member.addRole(member.guild.roles.find("name", "normies"));
 });
@@ -105,5 +106,5 @@ app.listen(port, () => {
 
  // pings server every 15 minutes to prevent dynos from sleeping
 setInterval(() => {
-  http.get('http://hermanbot.herokuapp.com');
+  http.get('https://hermanbot.herokuapp.com');
 }, 900000);
