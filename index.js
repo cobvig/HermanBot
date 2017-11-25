@@ -24,9 +24,31 @@ var greetings = [
 
 var bot = new Discord.Client();
 
+var choose = function(arr) {
+    var chosen_index = Math.floor(Math.random() * arr.length);
+    return arr[chosen_index];
+};
+
 bot.on("ready", function() {
     console.log("ready");
-    bot.user.setGame("Bot Dreams")
+    var msgs = [
+        "dun did fkc up",
+        "Köper Strömming Goods",
+        "Av cobvig#3825",
+        "bara lite",
+        "ja",
+        "wang",
+        "cmon",
+        "ezreal",
+        "crackar fbi säkerhets kod",
+        "unity engine"
+    ];
+    var changePlayingFn = function() {
+        bot.user.setGame(choose(msgs));
+    };
+    setInterval(changePlayingFn, 120000);
+    
+   
 });
 
 bot.on("guildMemberAdd", function(member) {
@@ -52,7 +74,7 @@ bot.on("message", function(message){
             break;
         case "8ball":
             if (args[1]) {
-                message.channel.sendMessage(fortunes[Math.floor(Math.random() * fortunes.length)]);
+                message.channel.sendMessage(choose(fortunes));
             } else {
                 message.channel.sendMessage("Kan ej läsa det :(")
             }
