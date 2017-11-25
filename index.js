@@ -32,7 +32,7 @@ var choose = function(arr) {
 bot.on("ready", function() {
     console.log("ready");
     var msgs = [
-        "dun did fkc up",
+        "dun",
         "Köper Strömming Goods",
         "Av cobvig#3825",
         "bara lite",
