@@ -61,7 +61,7 @@ bot.on("ready", function() {
     setInterval(function() {
         rainbowColor(rainbowRole, color.hex4hue(rc));
         rc = (rc + 3) % 360;
-    }, 50);
+    }, 200);
     //rainbowColor(rainbowRole, 317);  
 });
 
