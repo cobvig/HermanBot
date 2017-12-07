@@ -4,7 +4,7 @@ function hslToHex(h, s, l) {
     l /= 100;
     let r, g, b;
     if (s === 0) {
-        r = g = b = l; // achromatic
+        r = g = b = l; 
     } else {
         const hue2rgb = (p, q, t) => {
             if (t < 0) t += 1;
@@ -28,6 +28,6 @@ function hslToHex(h, s, l) {
 }
 
 exports.hex4hue = function(hue) {
-    var hex = hslToHex(hue, 100, 50);
+    var hex = hslToHex(hue, 80, 50);
     return hex.toUpperCase();
 };

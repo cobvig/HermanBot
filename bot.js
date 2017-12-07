@@ -31,7 +31,7 @@ var choose = function(arr) {
 };
 
 var rainbowColor = function(role, c) {
-    role.setColor(c).then(console.log(c)).catch(console.error);
+    role.setColor(c).then().catch(console.error);
 };
 
 bot.on("ready", function() {
