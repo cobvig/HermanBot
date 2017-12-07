@@ -3,6 +3,7 @@ const color = require('./color.js');
 
 const TOKEN = process.env.BOT_TOKEN;
 const PREFIX = "//";
+const start_time = Date.now();
 
 var fortunes = [
     "Ja",
@@ -34,8 +35,17 @@ var rainbowColor = function(role, c) {
     role.setColor(c).then().catch(console.error);
 };
 
+var pingHue = function(ping_time) {
+    var good_value = 100;
+    var bad_value = 300;
+    var max_hue = 90;
+    var inverted_hue = Math.min(max_hue * (ping_time - good_value) / (bad_value - good_value), max_hue);
+    return max_hue - inverted_hue;
+}
+
 bot.on("ready", function() {
     console.log("ready");
+    var start_time = Date.now;
     var msgs = [
         "dun",
         "Köper Strömming Goods",
@@ -50,7 +60,8 @@ bot.on("ready", function() {
         "colormatic",
         "nu ute för apple 2 platformer",
         "with my w",
-        "yes"
+        "yes",
+        "hej"
     ];
     var changePlayingFn = function() {
         bot.user.setGame(choose(msgs));
@@ -62,7 +73,7 @@ bot.on("ready", function() {
         rainbowColor(rainbowRole, color.hex4hue(rc));
         rc = (rc + 3) % 360;
     }, 200);
-    //rainbowColor(rainbowRole, 317);  
+    //rainbowColor(rainbowRole, 317); 
 });
 
 bot.on("guildMemberAdd", function(member) {
@@ -93,16 +104,19 @@ bot.on("message", function(message){
                 message.channel.sendMessage("Kan ej läsa det :(")
             }
             break;
-        case "embed":
+        case "stats":
+        case "statistics":
+        var the_ping = Math.round(bot.ping) + "ms";
+        var now_time = Date.now();
+        var up_time = new Date(now_time - start_time);
+        var up_time_string = up_time.getUTCHours() + "h " + up_time.getUTCMinutes() + "m " + up_time.getUTCSeconds() + "s";
             var embed = new Discord.RichEmbed()
-                .addField("Titel", "Beskrivning", true)
-                .addField("Titel 2", "Beskrivning 2", true)
-                .addField("Titel 3", "Beskrivning 3")
-                .addField("Titel 4", "Beskrivning 4", true)
-                .addField("Titel 5", "Beskrivning 5")
-                .setColor(0xfe6e78)
-                .setFooter("En sko")
-                .setThumbnail(message.author.avatarURL)
+                //.setAuthor("HermanBot", bot.user.avatarURL)
+                .addField("Ping", the_ping, true)
+                .addField("Uptime", up_time_string, true)
+                .setColor(color.hex4hue(pingHue(bot.ping)))
+                .setFooter("HermanBot", bot.user.avatarURL)
+                .setTimestamp()
             message.channel.sendEmbed(embed);
             break;
         case "mention":
